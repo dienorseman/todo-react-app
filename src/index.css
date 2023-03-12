@@ -1,0 +1,87 @@
+body {
+  background-color: #158af5;
+  padding: 1rem;
+  margin: 0;
+}
+
+main {
+  height: 700px;
+  width: 1500px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0;
+}
+
+.todo-form {
+  height: 600px;
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-form input {
+  height: 40px;
+  width: 720px;
+  border: 0px solid red;
+  border-radius: 12px;
+  font-size: medium;
+  padding-left: 2rem;
+}
+
+button {
+  background-color: #104d52;
+  height: 50px;
+  width: 360px;
+  border: 0px solid red;
+  border-radius: 12px;
+  color: white;
+  margin-top: 2rem;
+  font-size: large;
+  font-weight: bold;
+}
+
+.todos-container {
+  height: 600px;
+  width: 700px;
+  background-color: rgba(217, 217, 217, 0.27);
+  padding-top: 12px;
+}
+
+.todos-container ul {
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: auto;
+  background-color: wheat;
+}
+
+.todos-container ul li {
+  font-size: large;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  background-color: red;
+}
+
+.todos-container ul li p {
+  height: 50px;
+  color: white;
+  background-color: black;
+}
+
+.todos-container ul li button {
+  background-color: #104d52;
+  height: 50px;
+  width: 50px;
+  border: 0px solid red;
+  border-radius: 12px;
+  color: white;
+  font-size: large;
+  font-weight: bold;
+  margin: 0;
+}
