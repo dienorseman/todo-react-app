@@ -56,7 +56,7 @@ button {
   flex-direction: column;
   justify-content: center;
   width: auto;
-  background-color: wheat;
+  /* background-color: wheat; */
 }
 
 .todos-container ul li {
@@ -65,13 +65,16 @@ button {
   display: flex;
   align-items: center;
   justify-content: stretch;
-  background-color: red;
+  /* background-color: red; */
 }
 
 .todos-container ul li p {
   height: 50px;
+  width: 600px;
   color: white;
-  background-color: black;
+  text-align: left;
+  pad: 2rem;
+  /* background-color: black; */
 }
 
 .todos-container ul li button {
