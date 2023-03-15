@@ -1,62 +1,34 @@
-import { useState } from "react";
+import { useReducer } from "react"
+import { todoReducer } from "./hooks/todoReducer"
 
-function App() {
+export const App = () => {
 
-  const [newTodo, setNewTodo] = useState({});
-  const [nextId, setNextId] = useState(1);
-  const [todos, setTodos] = useState([]);
+  const initialState = [
+    {
+      id: 1,
+      description: 'Jump in circles',
+      done: false,
+    },
+    {
+      id: 2, 
+      description: 'go to the park',
+      done: false,
+    },
+    {
+      id: 3,
+      description: 'Grab a beer',
+      done: false,
+    }
+  ]
 
-  const onHandleSubmit = (event) => {
-    event.preventDefault();
-    setTodos([ ...todos, newTodo ]);
-    setNewTodo({});
-    setNextId(nextId + 1);
-
-  };
-
-  const handleDeleteTodo = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-    // console.log(id);
-  };
-
-  const handleEditTodo = (id) => {
-    return
-  }
+  const [state, dispatch] = useReducer( todoReducer, initialState)
 
   return (
-    <>
-      <main>
-        <form className="todo-form" onSubmit={onHandleSubmit}>
-          <input
-            type="text"
-            placeholder="What do we need to do?"
-            value={newTodo.content || ""}
-            onChange={(event) => {
-              setNewTodo({
-                id: nextId,
-                content: event.target.value,
-              });
-              // console.log(newTodo);
-            }}
-          />
-          <button>Add Todo</button>
-        </form>
-        <div className="todos-container">
-          <ul>
-            {todos.map((todo) => (
-              <li key={todo.id}>
-                <p>
-                  {todo.content}
-                </p>
-                <button  onClick={ handleEditTodo } >edit</button>
-                <button onClick={ () => handleDeleteTodo(todo.id) } >X</button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </main>
-    </>
-  );
+    <div>
+      <h1>Todo App</h1>
+      <ul>
+          <li>Item 1</li>
+      </ul>
+    </div>
+  )
 }
-
-export default App;
