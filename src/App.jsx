@@ -48,8 +48,8 @@ export const App = () => {
     dispatch(action)
   }
 
-  const handleEditTodo = ( { id, description } ) => {
-
+  const handleEditTodo = ( id, { description } ) => {
+    // console.log( id, description);
     const action = {
       type: "[TODO] Edit Todo",
       payload: { id, description },

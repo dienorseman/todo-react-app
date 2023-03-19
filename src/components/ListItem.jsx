@@ -1,44 +1,22 @@
-import { useState } from "react";
-import { useForm } from "../hooks/useForm";
+import { useState, } from "react";
 import { EditTodoFrom } from "./EditTodoFrom";
+import { TodoBody } from "./TodoBody";
 
 export const ListItem = ({ todo, onDeleteTodo, onToggleTodo, onEditTodo }) => {
   const [edited, setEdited] = useState(false);
-  const { id, done } = todo;
-  const {
-    description,
-    onInputChange,
-    inputReset,
-  } = useForm({
-    description: todo.description,
-  });
-
-  const onSubmit = (event) => {
-    event.preventDefault();
-    onEditTodo({ id, description });
-    inputReset();
-    setEdited(!edited);
-  };
+  const { id } = todo;
+  
   return (
     <li className="list-group-item d-flex justify-content-between">
-      {!edited && (
-        <>
-          <input
-            type="checkbox"
-            checked={done}
-            onChange={() => onToggleTodo(id)}
-          />
-          <span
-            className={`align-self-center ${
-              done && "text-decoration-line-through"
-            }`}
-            onClick={() => onToggleTodo(id)}
-          >
-            {todo.description}
-          </span>
-        </>
+      {edited ? (
+        <EditTodoFrom
+            todo={todo}
+            onEditTodo={onEditTodo}
+            setEdited={setEdited}
+        />
+      ) : (
+        <TodoBody todo={todo} onToggleTodo={onToggleTodo} />
       )}
-      {edited && <EditTodoFrom onSubmit={onSubmit} onInputChange={onInputChange} description={description} />}
       <div className="btn-group btn-group-sm align-self-center justify-content-end align-items-center">
         <button
           className="btn btn-outline-primary me-2"
