@@ -1,48 +1,72 @@
 import { useReducer } from "react";
+import { useEffect } from "react";
+import { AddTodoComponent } from "./components/AddTodoComponent";
+import { TodoList } from "./components/TodoList";
 import { todoReducer } from "./hooks/todoReducer";
 
-export const App = () => {
-  const initialState = [
-    {
-      id: 1,
-      description: "Jump in circles",
-      done: false,
-    },
-    {
-      id: 2,
-      description: "go to the park",
-      done: false,
-    },
-    {
-      id: 3,
-      description: "Grab a beer",
-      done: false,
-    },
-  ];
 
-  const [state, dispatch] = useReducer(todoReducer, initialState);
+export const App = () => {
+  const initialState = [];
+
+  const init = () => {
+    return JSON.parse( localStorage.getItem( 'Todos' )) || []
+  }
+
+  const [todos, dispatch] = useReducer(todoReducer, initialState, init);
+
+  useEffect(() => {
+    localStorage.setItem('Todos', JSON.stringify( todos ))
+    localStorage.setItem("TodosLength", todos.length.toString());
+  }, [todos])
+  
+
+  const handleSubmit = (todo) => {
+    const action = {
+      type: "[TODO] Add Todo",
+      payload: todo,
+    };
+
+    dispatch(action);
+  };
+
+  const handleDeleteTodo = ( id ) => {
+    const action = {
+      type: "[TODO] Delete Todo",
+      payload: id, 
+    }
+
+    dispatch(action)
+  }
+
+  const handleToggleTodo = ( id ) => {
+    // console.log( id );
+    const action = {
+      type: "[TODO] Toggle Todo",
+      payload: id, 
+    }
+
+    dispatch(action)
+  }
+
+  const handleEditTodo = ( { id, description } ) => {
+
+    const action = {
+      type: "[TODO] Edit Todo",
+      payload: { id, description },
+
+    };
+    dispatch(action);
+  }
 
   return (
     <div>
-      <h1>Todo App</h1>
+      <h1>Todo App </h1>
       <div className="row">
         <div className="col-7">
-          <ul>
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-          </ul>
+          <TodoList todos={todos} onDeleteTodo={ handleDeleteTodo } onToggleTodo={ handleToggleTodo } onEditTodo={ handleEditTodo }/>
         </div>{" "}
         <div className="col-5">
-          <h4>Add Todo</h4>
-          <hr />
-          <form>
-            <input
-              type="text"
-              className="What needs to be done?"
-              placeholder="¿Qué hay que hacer?"
-            />
-          </form>
+          <AddTodoComponent handleSubmit={handleSubmit} />
         </div>
       </div>
     </div>
