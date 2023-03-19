@@ -1,5 +1,5 @@
 import { useState, } from "react";
-import { EditTodoFrom } from "./EditTodoFrom";
+import { EditTodoForm } from "./EditTodoFrom";
 import { TodoBody } from "./TodoBody";
 
 export const ListItem = ({ todo, onDeleteTodo, onToggleTodo, onEditTodo }) => {
@@ -9,7 +9,7 @@ export const ListItem = ({ todo, onDeleteTodo, onToggleTodo, onEditTodo }) => {
   return (
     <li className="list-group-item d-flex justify-content-between">
       {edited ? (
-        <EditTodoFrom
+        <EditTodoForm
             todo={todo}
             onEditTodo={onEditTodo}
             setEdited={setEdited}

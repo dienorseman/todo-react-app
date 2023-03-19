@@ -1,7 +1,7 @@
 import { useEffect, useCallback } from "react";
 import { useForm } from "../hooks/useForm";
 
-export const EditTodoFrom = ({ todo, onEditTodo, setEdited }) => {
+export const EditTodoForm = ({ todo, onEditTodo, setEdited }) => {
   const { description, onInputChange, inputReset } = useForm({
     description: todo.description,
   });
